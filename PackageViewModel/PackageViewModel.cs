@@ -79,7 +79,7 @@ namespace PackageExplorerViewModel
             _settingsManager = settingsManager ?? throw new ArgumentNullException(nameof(settingsManager));
             _editorService = editorService ?? throw new ArgumentNullException(nameof(editorService));
             _uiServices = uiServices ?? throw new ArgumentNullException(nameof(uiServices));
-            _mruManager = mruManager ?? throw new ArgumentNullException(nameof(mruManager));
+            //_mruManager = mruManager ?? throw new ArgumentNullException(nameof(mruManager));
             _credentialPublishProvider = credentialPublishProvider ?? throw new ArgumentNullException(nameof(credentialPublishProvider));
             _package = package ?? throw new ArgumentNullException(nameof(package));
             _contentViewerMetadata = contentViewerMetadata;
@@ -1253,7 +1253,7 @@ namespace PackageExplorerViewModel
         {
             HasEdit = false;
             HasFileChangedExternally = false;
-            _mruManager.NotifyFileAdded(PackageMetadata, fileName, PackageType.LocalPackage);
+            _mruManager?.NotifyFileAdded(PackageMetadata, fileName, PackageType.LocalPackage);
         }
 
         internal void NotifyChanges()

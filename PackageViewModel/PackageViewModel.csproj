@@ -1,7 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
 
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net471</TargetFramework>
     <Description>Contains ViewModel classes for the main application.</Description>
     <RootNamespace>PackageExplorerViewModel</RootNamespace>
     <ExtrasEmbeddedResourceGeneratedCodeIsPublic>true</ExtrasEmbeddedResourceGeneratedCodeIsPublic>

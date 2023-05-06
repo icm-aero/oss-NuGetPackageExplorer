@@ -80,10 +80,10 @@ namespace PackageExplorerViewModel
 
         public PackageChooserViewModel CreatePackageChooserViewModel(string fixedPackageSource)
         {
-            var packageSourceSettings = new PackageSourceSettings(SettingsManager);
+            var packageSourceSettings = new Sources();
             var packageSourceManager = new MruPackageSourceManager(packageSourceSettings);
             var model = new PackageChooserViewModel(packageSourceManager,
-                                                    SettingsManager.ShowPrereleasePackages,
+                                                    SettingsManager?.ShowPrereleasePackages == true,
                                                     fixedPackageSource);
             model.PropertyChanged += OnPackageChooserViewModelPropertyChanged;
             return model;
@@ -102,8 +102,22 @@ namespace PackageExplorerViewModel
 
             if (e.PropertyName == "ShowPrereleasePackages")
             {
-                SettingsManager.ShowPrereleasePackages = model.ShowPrereleasePackages;
+                if (SettingsManager != null) SettingsManager.ShowPrereleasePackages = model.ShowPrereleasePackages;
             }
+        }
+    }
+
+    public class Sources : ISourceSettings
+    {
+        public string DefaultSource { get; } = "https://api.nuget.org/v3/index.json";
+        public string ActiveSource { get; set; }
+        public IList<string> GetSources()
+        {
+            return new[] { DefaultSource, "http://proget.dev.icm.aero:8624/nuget/Default/v3/index.json" };
+        }
+
+        public void SetSources(IEnumerable<string> sources)
+        {
         }
     }
 }

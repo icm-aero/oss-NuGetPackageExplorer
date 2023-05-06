@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security;
-using Windows.Storage;
 using NuGet.Versioning;
 
 namespace NuGetPe
@@ -158,7 +157,7 @@ namespace NuGetPe
         {
             // Get the localized special folder for local app data
             var local = new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)).Name;
-            return GetCachePath(Environment.GetEnvironmentVariable, _ => Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, local));
+            return GetCachePath(Environment.GetEnvironmentVariable, _ => Path.Combine("c:\\temp\\configeditor", local));
         }
 
         private static string GetCachePath(Func<string, string> getEnvironmentVariable, Func<Environment.SpecialFolder, string> getFolderPath)

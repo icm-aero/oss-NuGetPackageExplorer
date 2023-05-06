@@ -6,8 +6,6 @@ using System;
 using System.IO;
 using System.Security;
 using Microsoft.Toolkit.Win32.UI.Controls.Interop.Win32;
-using Windows.Foundation.Metadata;
-using Windows.Security.EnterpriseData;
 
 namespace Microsoft.Toolkit.Win32.UI.Controls.Interop
 {
@@ -90,14 +88,14 @@ namespace Microsoft.Toolkit.Win32.UI.Controls.Interop
         internal static bool UseWindowsInformationProtectionApi
         {
             [SecurityCritical]
-            get => Windows10Release >= Windows10Release.Anniversary && ProtectionPolicyManager.IsProtectionEnabled;
+            get => Windows10Release >= Windows10Release.Anniversary ;
         }
 
         internal static Windows10Release Windows10Release { get; }
 
 
         [SecurityCritical]
-        private static bool IsApiContractPresent(ushort majorVersion) => ApiInformation.IsApiContractPresent(ContractName, majorVersion);
+        private static bool IsApiContractPresent(ushort majorVersion) => false;
 
         [SecurityCritical]
         private static bool IsServer()

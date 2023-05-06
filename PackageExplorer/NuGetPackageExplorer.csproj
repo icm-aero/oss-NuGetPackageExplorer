@@ -1,18 +1,23 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
 
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>net471</TargetFramework>
     <OutputType>WinExe</OutputType>
     <AssemblyName>NuGetPackageExplorer</AssemblyName>
     <ApplicationIcon>nupack.ico</ApplicationIcon>
     <Title>NuGet Package Explorer</Title>
     <Description>This is a NuGet package explorer tool which lets you view the metadata of a .nupkg package. After installing it, you can double click on .nupkg packages to open them in Package Explorer.</Description>
-    <ExtrasEmbeddedResourceGeneratedCodeIsPublic>true</ExtrasEmbeddedResourceGeneratedCodeIsPublic>
+    <!--<ExtrasEmbeddedResourceGeneratedCodeIsPublic>true</ExtrasEmbeddedResourceGeneratedCodeIsPublic>-->
     <RootNamespace>PackageExplorer</RootNamespace>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Platforms>x86</Platforms>
-    <NgenR2R Condition="'$(Configuration)' != 'Debug'">true</NgenR2R>
+    <!--<AllowUnsafeBlocks>true</AllowUnsafeBlocks>-->
+    <!--<Platforms>x86</Platforms>-->
+    <!--<NgenR2R Condition="'$(Configuration)' != 'Debug'">true</NgenR2R>-->
     <Configurations>Debug;Release;Choco;Nightly;Store</Configurations>
+    <!--<UseWpf>true</UseWpf>-->
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <Platforms>AnyCPU;AnyCPU</Platforms>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationFramework.Aero" />
@@ -22,6 +27,9 @@
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.WindowsRuntime" />
     <Reference Include="Windows" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
 
     <PackageReference Include="AvalonEdit" Version="5.0.4" />
     <PackageReference Include="GrayscaleEffect" Version="1.0.1" />

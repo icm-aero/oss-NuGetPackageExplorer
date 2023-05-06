@@ -6,7 +6,7 @@ using NuGetPe;
 
 namespace PackageExplorerViewModel
 {
-    internal class PackageSourceSettings : ISourceSettings
+    public class PackageSourceSettings : ISourceSettings
     {
         private readonly ISettingsManager _settingsManager;
 

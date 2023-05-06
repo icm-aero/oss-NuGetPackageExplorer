@@ -1,0 +1,132 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras">
+
+  <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>ConfigEditor</AssemblyName>
+    <ApplicationIcon>nupack.ico</ApplicationIcon>
+    <Title>NuGet Package Explorer</Title>
+    <Description>This is a NuGet package explorer tool which lets you view the metadata of a .nupkg package. After installing it, you can double click on .nupkg packages to open them in Package Explorer.</Description>
+    <ExtrasEmbeddedResourceGeneratedCodeIsPublic>true</ExtrasEmbeddedResourceGeneratedCodeIsPublic>
+    <RootNamespace>PackageExplorer</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!--<Platforms>x86</Platforms>-->
+    <!--<NgenR2R Condition="'$(Configuration)' != 'Debug'">true</NgenR2R>-->
+    <Configurations>Debug;Release;Choco;Nightly;Store</Configurations>
+    <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.WindowsRuntime" />
+    <Reference Include="Windows" />
+
+    <PackageReference Include="AvalonEdit" Version="5.0.4" />
+    <PackageReference Include="GrayscaleEffect" Version="1.0.1" />
+    <PackageReference Include="Humanizer" Version="2.5.1" />
+    <PackageReference Include="Microsoft.WindowsAPICodePack-Shell" Version="1.1.0" />
+    <PackageReference Include="Ookii.Dialogs.Wpf" Version="1.0.0" />
+    <PackageReference Include="System.Memory" Version="4.5.1" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.0" />
+    <PackageReference Include="Microsoft.DotNet.Framework.NativeImageCompiler" Version="0.0.1-prerelease-00002" PrivateAssets="All" />
+
+    <ProjectReference Include="..\PackageViewModel\PackageViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\*.*" />
+    <None Remove="Images\Add.png" />
+    <None Remove="Images\arrow.png" />
+    <None Remove="Images\background.PNG" />
+    <None Remove="Images\Books.png" />
+    <None Remove="Images\Book_angleHS.png" />
+    <None Remove="Images\build.png" />
+    <None Remove="Images\Cancel.png" />
+    <None Remove="Images\clear.png" />
+    <None Remove="Images\Close.png" />
+    <None Remove="Images\cog.png" />
+    <None Remove="Images\CopyHS.png" />
+    <None Remove="Images\CutHS.png" />
+    <None Remove="Images\Delete.png" />
+    <None Remove="Images\EditHS.png" />
+    <None Remove="Images\EditSource.png" />
+    <None Remove="Images\Edit_RedoHS.png" />
+    <None Remove="Images\Edit_UndoHS.png" />
+    <None Remove="Images\error.png" />
+    <None Remove="Images\FindHS.png" />
+    <None Remove="Images\folder.png" />
+    <None Remove="Images\FontDialogHS.png" />
+    <None Remove="Images\GoToPrevious.png" />
+    <None Remove="Images\information.png" />
+    <None Remove="Images\Lib.png" />
+    <None Remove="Images\MoveFirstHS.png" />
+    <None Remove="Images\MoveLastHS.png" />
+    <None Remove="Images\MoveNextHS.png" />
+    <None Remove="Images\MovePreviousHS.png" />
+    <None Remove="Images\NewDocumentHS.png" />
+    <None Remove="Images\NewFolderHS.png" />
+    <None Remove="Images\NoteHS.png" />
+    <None Remove="Images\openHS.png" />
+    <None Remove="Images\packageicon.png" />
+    <None Remove="Images\PasteHS.png" />
+    <None Remove="Images\Properties.png" />
+    <None Remove="Images\props.png" />
+    <None Remove="Images\PublishToWebHS.png" />
+    <None Remove="Images\RepeatHS.png" />
+    <None Remove="Images\saveHS.png" />
+    <None Remove="Images\Script.png" />
+    <None Remove="Images\search.png" />
+    <None Remove="Images\source.png" />
+    <None Remove="Images\Tools.png" />
+    <None Remove="Images\Validate.png" />
+    <None Remove="Images\Warning.png" />
+    <None Remove="Resources\fxAssemblies.txt" />
+    <Content Include="Resources\fxAssemblies.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\default-package-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="PackageChooser\PackageChooserDialog.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="PackageChooser\PackageDetailActionsControl.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="PackageChooser\PackageDetailControl.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="PackageChooser\PackageListItem.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Utility\Toolkit\" />
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <Compile Update="Resources.Designer.cs">
+      <DependentUpon>$([MSBuild]::ValueOrDefault('%(Filename)', '').Replace('$(ExtrasDefaultDesignerFileSuffix)', '.resx'))</DependentUpon>
+    </Compile>
+  </ItemGroup>-->
+
+  <!--<ItemGroup>
+    <EmbeddedResource Update="Resources.resx">
+      <GenFilePath>%(RecursiveDir)%(Filename)$(ExtrasDefaultDesignerFileSuffix)$(DefaultLanguageSourceExtension)</GenFilePath>
+      <_SdkHasLangId>$([System.Text.RegularExpressions.Regex]::IsMatch('%(FileName)', '$(_SdkLangIdRegEx)'))</_SdkHasLangId>
+      <LastGenOutput>%(Filename)$(ExtrasDefaultDesignerFileSuffix)$(DefaultLanguageSourceExtension)</LastGenOutput>
+      <Generator>$(_SdkEmbeddedResourceCodeGeneratorTool)</Generator>
+    </EmbeddedResource>
+  </ItemGroup>-->
+
+</Project>

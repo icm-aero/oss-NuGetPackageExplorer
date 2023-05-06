@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net471</TargetFramework>
     <Description>Contains types to enable the plugin architecture in NuGet Package Explorer.</Description>
     <Product>NuGet Package Explorer</Product>
     <SignAssembly>true</SignAssembly>

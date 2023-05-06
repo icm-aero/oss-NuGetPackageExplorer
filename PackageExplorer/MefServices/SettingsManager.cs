@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using NuGetPackageExplorer.Types;
 using NuGetPe;
 using PackageExplorer.Properties;
-using Windows.Storage;
 
 namespace PackageExplorer
 {
@@ -28,12 +27,6 @@ namespace PackageExplorer
         private T GetValue<T>([CallerMemberName] string name = null)
         {
             object value;
-
-            if (AppContainerUtility.IsInAppContainer)
-            {
-                value = GetValueFromLocalSettings<T>(name);
-            }
-            else
             {
                 value = Settings.Default[name];
                 if (typeof(T) == typeof(List<string>) && value is StringCollection sc)
@@ -53,15 +46,8 @@ namespace PackageExplorer
         [MethodImpl(MethodImplOptions.NoInlining)]
         private static object GetValueFromLocalSettings<T>(string name)
         {
-            object value;
-            var settings = ApplicationData.Current.LocalSettings;
-            value = settings.Values[name];
-            if (typeof(T) == typeof(List<string>) && value is string str)
-            {
-                value = JsonConvert.DeserializeObject<List<string>>(str);
-            }
-
-            return value;
+            
+            return null;
         }
 
         private void SetValue(object value, string name = null, [CallerMemberName] string propertyName = null)
@@ -89,12 +75,7 @@ namespace PackageExplorer
         [MethodImpl(MethodImplOptions.NoInlining)]
         private static object SetValueInLocalSettings(object value, string name)
         {
-            var settings = ApplicationData.Current.LocalSettings;
-            if (value is List<string> list)
-            {
-                value = JsonConvert.SerializeObject(list);
-            }
-            settings.Values[name] = value;
+           
             return value;
         }
 
